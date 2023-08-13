@@ -128,6 +128,25 @@ def parse_nodes(nodes_output, linker, restrictions):
         print("No nodes available. Please try again with different restrictions.")
 
 def main():
+
+    """
+    ToSUn HPC Availability Checker
+    This script parses scontrol show [partition|node|config] outputs to capture allocated resources/available accounts to user
+    and shows the available nodes/partitions/QoS combos and total resource availability based on the restrictions inputs by the user.
+    sinfo-squeue combination can also be used to get the same information, but it is not as detailed as scontrol show - especially if GPU type is not provided by the job owners
+    , and not available to scrape account restriction.
+
+    Usage:
+    python is_hpc_avail.py
+
+    Input:
+    1. User account(s) (separated by comma if multiple, or 'all' for all accounts)
+    2. Number of CPU cores required, 0 for no filter
+    3. Number of GPUs required, 0 for no filter
+
+    Note: Available Memory may not be reliable. Manually state the required memory in the job script.
+    """
+
     restrictions = {"user_account" : [acc for acc in input("Enter your user account(s) \nSeparate with commas (,) if multiple or 'all' for all accounts:\t").split(',')],
     "required_cpus" : int(input("Enter the number of CPU cores (0 for no filter):\t")),
     "required_gpus" : int(input("Enter the number of GPUs (0 for no filter):\t")),
