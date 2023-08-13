@@ -128,7 +128,7 @@ def parse_nodes(nodes_output, linker, restrictions):
         print("No nodes available. Please try again with different restrictions.")
 
 def main():
-    restrictions = {"user_account" : [acc for acc in input("Enter your user account(s) \nSeparate with commas (,) if multiple: ").split(',')],
+    restrictions = {"user_account" : [acc for acc in input("Enter your user account(s) \nSeparate with commas (,) if multiple or 'all' for all accounts ").split(',')],
     "required_cpus" : int(input("Enter the number of CPU cores: ")),
     "required_gpus" : int(input("Enter the number of GPUs (Enter 0 if not): ")),
     }
@@ -142,6 +142,8 @@ def main():
     partition_data = parse_partitions(partitions_output)
 
     all_possible_accounts = set([user for _, data in partition_data.items() for user in data['user']])
+    if restrictions['user_account'] == ['all']:
+        restrictions['user_account'] = list(all_possible_accounts)
     account_check = len(set(restrictions['user_account']) & all_possible_accounts)
     account_check_list = [1 if user in all_possible_accounts else 0 for user in restrictions['user_account']]
     if account_check:
