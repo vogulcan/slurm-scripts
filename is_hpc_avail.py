@@ -128,9 +128,9 @@ def parse_nodes(nodes_output, linker, restrictions):
         print("No nodes available. Please try again with different restrictions.")
 
 def main():
-    restrictions = {"user_account" : [acc for acc in input("Enter your user account(s) \nSeparate with commas (,) if multiple or 'all' for all accounts ").split(',')],
-    "required_cpus" : int(input("Enter the number of CPU cores: ")),
-    "required_gpus" : int(input("Enter the number of GPUs (Enter 0 if not): ")),
+    restrictions = {"user_account" : [acc for acc in input("Enter your user account(s) \nSeparate with commas (,) if multiple or 'all' for all accounts:\t").split(',')],
+    "required_cpus" : int(input("Enter the number of CPU cores:\t")),
+    "required_gpus" : int(input("Enter the number of GPUs (Enter 0 if not):\t")),
     }
 
     print("\nYou have entered the following: ")
