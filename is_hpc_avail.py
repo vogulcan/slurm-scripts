@@ -84,7 +84,7 @@ def print_table(table, current_colors):
 
 def parse_nodes(nodes_output, linker, restrictions):
     all_node_info = nodes_output.strip().split('\n\n')
-    table = [['Node', 'Partition', 'Account', 'QoS', '#CPU Cores Avail.', '#GPU Avail.', 'GPU Name', 'Memory Avail.(GB)']]
+    table = [['Node', 'Partition', 'Account', 'QoS', '#CPU Cores Avail.', '#GPU Avail.', 'GPU Name', 'Free Mem (GB)']]
     colors_for_table = [COLORS[0]]
     for node in all_node_info:
         
@@ -122,7 +122,7 @@ def parse_nodes(nodes_output, linker, restrictions):
     
             colors_for_table.extend([color_for_this_node] * n_part)
     if len(table) > 1:
-        print(f'\nReminder: Default Memory per CPU core within the SLURM config is {parse_def_mem()} MB [DefMemPerCPU].\n')
+        print(f'\nReminder: Default Memory per CPU core within the SLURM config is {parse_def_mem()} MB [DefMemPerCPU].\n Free Memory may not be reliable. Manually state the required memory in the job script.\n')
         print_table(table, colors_for_table)
     else:
         print("No nodes available. Please try again with different restrictions.")
