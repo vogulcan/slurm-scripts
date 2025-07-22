@@ -2,7 +2,7 @@ import subprocess
 import re
 
 def get_scontrol(cmd):
-    return subprocess.check_output(cmd, shell=True, text=True)
+    return subprocess.check_output(cmd, shell=True, universal_newlines=True)
 
 def parse_partitions(raw):
     partitions = {}
