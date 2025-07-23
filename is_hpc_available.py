@@ -45,8 +45,8 @@ def parse_nodes(raw):
     return nodes
 
 def prompt_user(all_groups):
-    print("Available user groups:", ", ".join(all_groups))
-    groups = input("Enter your group(s) (comma-separated, e.g. mdbf,users): ").strip()
+    print("Available user accounts on this HPC:", ", ".join(all_groups))
+    groups = input("Enter your account(s) (comma-separated, e.g. mdbf,users): ").strip()
     group_list = [g.strip() for g in groups.split(",") if g.strip()]
     cpu = int(input("CPUs needed: "))
     gpu = int(input("GPUs needed (enter 0 if not necessarily needed): "))
